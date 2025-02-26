@@ -74,7 +74,6 @@ Appendix
     contributing/index
     CHANGELOG
     API/index
-    ROADMAP
 
 
 .. The below toctree directive is merely to eliminate 2 Sphinx warnings that these 2

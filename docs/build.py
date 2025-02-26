@@ -622,36 +622,35 @@ def run(args):
 
             # Create .RST files for API pages, plus
             # add API hyperlinks to .RST files in the directories in passed array.
-
-        doc_builder.run(
-            project_dir,
-            intermediate_dir,
-            os.path.join(intermediate_dir, 'intro'),
-            os.path.join(intermediate_dir, 'details'),
-            os.path.join(intermediate_dir, 'details', 'common-widget-features'),
-            os.path.join(intermediate_dir, 'details', 'common-widget-features', 'layouts'),
-            os.path.join(intermediate_dir, 'details', 'common-widget-features', 'styles'),
-            os.path.join(intermediate_dir, 'details', 'debugging'),
-            os.path.join(intermediate_dir, 'details', 'integration'),
-            os.path.join(intermediate_dir, 'details', 'integration', 'adding-lvgl-to-your-project'),
-            os.path.join(intermediate_dir, 'details', 'integration', 'bindings'),
-            os.path.join(intermediate_dir, 'details', 'integration', 'building'),
-            os.path.join(intermediate_dir, 'details', 'integration', 'chip'),
-            os.path.join(intermediate_dir, 'details', 'integration', 'driver'),
-            os.path.join(intermediate_dir, 'details', 'integration', 'driver', 'display'),
-            os.path.join(intermediate_dir, 'details', 'integration', 'driver', 'touchpad'),
-            os.path.join(intermediate_dir, 'details', 'integration', 'framework'),
-            os.path.join(intermediate_dir, 'details', 'integration', 'ide'),
-            os.path.join(intermediate_dir, 'details', 'integration', 'os'),
-            os.path.join(intermediate_dir, 'details', 'integration', 'os', 'yocto'),
-            os.path.join(intermediate_dir, 'details', 'integration', 'renderers'),
-            os.path.join(intermediate_dir, 'details', 'libs'),
-            os.path.join(intermediate_dir, 'details', 'main-modules'),
-            # Note:  details/main-modules/display omitted intentionally,
-            # since API links for those .RST files have been added manually.
-            os.path.join(intermediate_dir, 'details', 'auxiliary-modules'),
-            os.path.join(intermediate_dir, 'details', 'widgets')
-        )
+            doc_builder.run(
+                project_dir,
+                intermediate_dir,
+                os.path.join(intermediate_dir, 'intro'),
+                os.path.join(intermediate_dir, 'details'),
+                os.path.join(intermediate_dir, 'details', 'common-widget-features'),
+                os.path.join(intermediate_dir, 'details', 'common-widget-features', 'layouts'),
+                os.path.join(intermediate_dir, 'details', 'common-widget-features', 'styles'),
+                os.path.join(intermediate_dir, 'details', 'debugging'),
+                os.path.join(intermediate_dir, 'details', 'integration'),
+                os.path.join(intermediate_dir, 'details', 'integration', 'adding-lvgl-to-your-project'),
+                os.path.join(intermediate_dir, 'details', 'integration', 'bindings'),
+                os.path.join(intermediate_dir, 'details', 'integration', 'building'),
+                os.path.join(intermediate_dir, 'details', 'integration', 'chip'),
+                os.path.join(intermediate_dir, 'details', 'integration', 'driver'),
+                os.path.join(intermediate_dir, 'details', 'integration', 'driver', 'display'),
+                os.path.join(intermediate_dir, 'details', 'integration', 'driver', 'touchpad'),
+                os.path.join(intermediate_dir, 'details', 'integration', 'framework'),
+                os.path.join(intermediate_dir, 'details', 'integration', 'ide'),
+                os.path.join(intermediate_dir, 'details', 'integration', 'os'),
+                os.path.join(intermediate_dir, 'details', 'integration', 'os', 'yocto'),
+                os.path.join(intermediate_dir, 'details', 'integration', 'renderers'),
+                os.path.join(intermediate_dir, 'details', 'libs'),
+                os.path.join(intermediate_dir, 'details', 'main-modules'),
+                # Note:  details/main-modules/display omitted intentionally,
+                # since API links for those .RST files have been added manually.
+                os.path.join(intermediate_dir, 'details', 'auxiliary-modules'),
+                os.path.join(intermediate_dir, 'details', 'widgets')
+            )
 
         t2 = datetime.now()
         print('Example/API run time:  ' + str(t2 - t1))
