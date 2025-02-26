@@ -174,7 +174,7 @@ import config_builder
 _ = os.path.abspath(os.path.dirname(__file__))
 docs_src_dir = os.path.join(_, 'src')
 sys.path.insert(0, docs_src_dir)
-from lvgl_version import lvgl_version #NoQA
+from lvgl_version import lvgl_version  # NoQA
 
 # Not Currently Used
 # (Code is kept in case we want to re-implement it later.)
@@ -244,27 +244,27 @@ def cmd(s, start_dir=None, exit_on_error=True):
         sys.exit(result)
 
 
-def intermediate_dir_contents_exists(_intdir):
+def intermediate_dir_contents_exists(dir):
     """Provide answer to question:  Can we have reasonable confidence that
     the contents of `intermediate_directory` already exists?
     """
     result = False
-    c1 = os.path.isdir(_intdir)
+    c1 = os.path.isdir(dir)
 
     if c1:
-        temp_path = os.path.join(_intdir, 'CHANGELOG.rst')
+        temp_path = os.path.join(dir, 'CHANGELOG.rst')
         c2 = os.path.exists(temp_path)
-        temp_path = os.path.join(_intdir, '_ext')
+        temp_path = os.path.join(dir, '_ext')
         c3 = os.path.isdir(temp_path)
-        temp_path = os.path.join(_intdir, '_static')
+        temp_path = os.path.join(dir, '_static')
         c4 = os.path.isdir(temp_path)
-        temp_path = os.path.join(_intdir, 'details')
+        temp_path = os.path.join(dir, 'details')
         c5 = os.path.isdir(temp_path)
-        temp_path = os.path.join(_intdir, 'intro')
+        temp_path = os.path.join(dir, 'intro')
         c6 = os.path.isdir(temp_path)
-        temp_path = os.path.join(_intdir, 'contributing')
+        temp_path = os.path.join(dir, 'contributing')
         c7 = os.path.isdir(temp_path)
-        temp_path = os.path.join(_intdir, cfg_examples_dir)
+        temp_path = os.path.join(dir, cfg_examples_dir)
         c8 = os.path.isdir(temp_path)
         result = c2 and c3 and c4 and c5 and c6 and c7 and c8
 
@@ -701,7 +701,7 @@ def run(args):
 
         # Copy resulting PDF to intermediate directory to make
         # it available for the HTML build (Sphinx copies it to
-        # its HTML output so it ends up on the webserver where it
+        # its HTML output, so it ends up on the webserver where it
         # can be downloaded).
         if not os.path.exists(pdf_intermediate_dst_dir):
             os.makedirs(pdf_intermediate_dst_dir)
