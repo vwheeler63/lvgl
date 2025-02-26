@@ -33,6 +33,9 @@ Description
     script attempts to rebuild only those documents whose path, name or
     modification date has changed since the last build.
 
+    The output directory also has a fixed location (overridable by
+    `LVGL_DOC_BUILD_OUTPUT_DIR` environment variable).
+
     Caution:
 
     The document build meant for end-user consumption should ONLY be done after a
@@ -184,10 +187,11 @@ from lvgl_version import lvgl_version  # NoQA
 # Configuration
 # -------------------------------------------------------------------------
 # These are relative paths from the ./docs/ directory.
+cfg_project_dir = '..'
 cfg_src_dir = 'src'
-cfg_output_dir = 'build'
 cfg_examples_dir = 'examples'
 cfg_default_intermediate_dir = 'intermediate'
+cfg_default_output_dir = 'build'
 cfg_static_dir = '_static'
 cfg_downloads_dir = 'downloads'
 cfg_lv_conf_filename = 'lv_conf.h'
@@ -195,7 +199,7 @@ cfg_lv_version_filename = 'lv_version.h'
 cfg_doxyfile_filename = 'Doxyfile'
 cfg_top_index_filename = 'index.rst'
 
-# Filename generated in `cfg_latex_output_dir` and copied to `cfg_pdf_output_dir`.
+# Filename generated in `latex_output_dir` and copied to `pdf_output_dir`.
 cfg_pdf_filename = 'LVGL.pdf'
 
 
@@ -377,19 +381,12 @@ def run(args):
     # _dir      = path leading to a directory         (absolute or relative)
     # ---------------------------------------------------------------------
     base_dir = os.path.abspath(os.path.dirname(__file__))
-    project_dir = os.path.abspath(os.path.join(base_dir, '..'))
+    project_dir = os.path.abspath(os.path.join(base_dir, cfg_project_dir))
     examples_dir = os.path.join(project_dir, cfg_examples_dir)
     lvgl_src_dir = os.path.join(project_dir, 'src')
-    output_dir = os.path.join(base_dir, cfg_output_dir)
-    html_output_dir = os.path.join(output_dir, 'html')
-    latex_output_dir = os.path.join(output_dir, 'latex')
-    pdf_output_dir = os.path.join(output_dir, 'pdf')
-    pdf_src_file = os.path.join(latex_output_dir, cfg_pdf_filename)
-    pdf_dst_file = os.path.join(pdf_output_dir, cfg_pdf_filename)
-    version_src_file = os.path.join(project_dir, cfg_lv_version_filename)
 
     # Establish intermediate directory.  The presence of environment variable
-    # `LVGL_DOC_BUILD_INTERMEDIATE_DIR` overrides default in `cfg_intermediate_dir`.
+    # `LVGL_DOC_BUILD_INTERMEDIATE_DIR` overrides default in `cfg_default_intermediate_dir`.
     if 'LVGL_DOC_BUILD_INTERMEDIATE_DIR' in os.environ:
         intermediate_dir = os.environ['LVGL_DOC_BUILD_INTERMEDIATE_DIR']
     else:
@@ -405,6 +402,20 @@ def run(args):
     sphinx_path_sep = '/'
     pdf_relative_file = cfg_static_dir + sphinx_path_sep + cfg_downloads_dir + sphinx_path_sep + cfg_pdf_filename
     pdf_link_ref_str = f'PDF Version: :download:`{cfg_pdf_filename} <{pdf_relative_file}>`'
+
+    # Establish build directory.  The presence of environment variable
+    # `LVGL_DOC_BUILD_OUTPUT_DIR` overrides default in `cfg_default_output_dir`.
+    if 'LVGL_DOC_BUILD_OUTPUT_DIR' in os.environ:
+        output_dir = os.environ['LVGL_DOC_BUILD_OUTPUT_DIR']
+    else:
+        output_dir = os.path.join(base_dir, cfg_default_output_dir)
+
+    html_output_dir = os.path.join(output_dir, 'html')
+    latex_output_dir = os.path.join(output_dir, 'latex')
+    pdf_output_dir = os.path.join(output_dir, 'pdf')
+    pdf_src_file = os.path.join(latex_output_dir, cfg_pdf_filename)
+    pdf_dst_file = os.path.join(pdf_output_dir, cfg_pdf_filename)
+    version_src_file = os.path.join(project_dir, cfg_lv_version_filename)
 
     # Special stuff for right-aligning PDF download link.
     # Note: this needs to be embedded in a <div> tag because the
@@ -426,7 +437,7 @@ def run(args):
         + os.linesep
 
     # ---------------------------------------------------------------------
-    # Change to script directory for consistency.
+    # Change to script directory for consistent run-time environment.
     # ---------------------------------------------------------------------
     os.chdir(base_dir)
     print(f'Intermediate dir:  [{intermediate_dir}]')
