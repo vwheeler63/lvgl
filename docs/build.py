@@ -693,21 +693,11 @@ def run(args):
         cmd_line = 'latexmk -pdf "LVGL.tex"'
         cmd(cmd_line, latex_output_dir, False)
 
-        # Copy resulting PDF to its output directory.
+        # Move resulting PDF to its output directory.
         if not os.path.exists(pdf_output_dir):
             os.makedirs(pdf_output_dir)
 
-        shutil.copyfile(pdf_src_file, pdf_dst_file)
-
-        # Copy resulting PDF to intermediate directory to make
-        # it available for the HTML build (Sphinx copies it to
-        # its HTML output, so it ends up on the webserver where it
-        # can be downloaded).
-        if not os.path.exists(pdf_intermediate_dst_dir):
-            os.makedirs(pdf_intermediate_dst_dir)
-
-        shutil.move(pdf_src_file, pdf_intermediate_dst_file)
-
+        shutil.move(pdf_src_file, pdf_dst_file)
         t2 = datetime.now()
         print('PDF           :  ' + pdf_dst_file)
         print('Latex gen time:  ' + str(t2 - t1))
@@ -722,6 +712,17 @@ def run(args):
         print("****************")
         print("Building HTML output...")
         print("****************")
+
+        # If PDF is present in build directory, copy it to
+        # intermediate directory for use by HTML build.
+        # (Sphinx copies it to its HTML output, so it ends
+        # up on the webserver where it can be downloaded).
+        if os.path.isfile(pdf_dst_file):
+            # Create _static/download/ directory if needed.
+            if not os.path.exists(pdf_intermediate_dst_dir):
+                os.makedirs(pdf_intermediate_dst_dir)
+
+            shutil.copyfile(pdf_dst_file, pdf_intermediate_dst_file)
 
         # If PDF is present, ensure there is a link to it in the top
         # index.rst so HTML build will have it.
