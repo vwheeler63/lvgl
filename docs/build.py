@@ -441,6 +441,7 @@ def run(args):
     # ---------------------------------------------------------------------
     os.chdir(base_dir)
     print(f'Intermediate dir:  [{intermediate_dir}]')
+    print(f'Output dir      :  [{output_dir}]')
     print(f'Running from    :  [{base_dir}]')
 
     # ---------------------------------------------------------------------
