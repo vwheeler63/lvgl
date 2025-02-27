@@ -531,7 +531,9 @@ def run(args):
     # link(s) and API links) before being used to generate new docs.
     # ---------------------------------------------------------------------
     # dirsync `exclude_list` = list of regex patterns to exclude.
-    exclude_list = [r'lv_conf\.h', r'^tmp.*', r'^output.*']
+    intermediate_re = r'^' + cfg_default_intermediate_dir + r'.*'
+    output_re = r'^' + cfg_default_output_dir + r'.*'
+    exclude_list = [r'lv_conf\.h', r'^__pycache__.*', intermediate_re, output_re]
 
     if intermediate_dir_contents_exists(intermediate_dir):
         # We are just doing an update of the intermediate_dir contents.
