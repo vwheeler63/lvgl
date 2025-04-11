@@ -70,39 +70,6 @@ code.sig-name {
 }
 
 /*-------------------------------------------------------------------------
- * All `wy-...` and `rst-content` classes are classes from
- * `sphinx_rtd_theme` `layout.html` template.
- *-------------------------------------------------------------------------
- * `wy-side-nav-search` class adorns the <div> element in the upper left
- * corner of each page that contains:
- * - the LVGL logo
- * - documentation-version selector drop-down (matches LVGL release versions)
- * - search TextBox
- */
-.wy-side-nav-search {
-  background-color: #f5f5f5;
-}
-
-.wy-side-nav-search > div.version {
-  color: #333;
-  display: none;                               /*replaced by dropdown*/
-}
-
-/* `rst-content` class marks the <div> element that contains the whole
- * visible part of the right panel where the page content is shown. */
-/*Let `code` wrap*/
-.rst-content code, .rst-content tt, code {
-  white-space: normal;
-}
-
-.wy-nav-content {
-  padding: 1.618em 3.236em;
-  height: 100%;
-  max-width: 1920px;
-  margin: auto
-}
-
-/*-------------------------------------------------------------------------
  * `lv_example` Sections
  *-------------------------------------------------------------------------
  * The below contains a documented example to show the relationships of
@@ -284,23 +251,3 @@ div.body {
   font-size: 75%;
 }
 
-/* These replace colors present in `pygments.css` which is used in code highlighting.
- * These are too dark to be readlable in DARK mode.  They include:
- * .highlight .nf -- function names
- * .highlight .nl -- code labels
- * .descname  .n  -- API documentation function names
- * The first 2 were created by lightening the `pygments.css` colors without changing their
- * angle on the color wheel.  The added "conditional" also limits this change to
- * DARK MODE only instead of both light and dark modes.
- */
-html[data-theme="dark"] .highlight .nf {
-  color: #3569f5;
-}
-
-html[data-theme="dark"] .highlight .nl {
-  color: #0043e2;
-}
-
-html[data-theme="dark"] .descname .n {
-  color: #0a44de;
-}
