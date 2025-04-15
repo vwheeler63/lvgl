@@ -201,13 +201,13 @@ html_theme = 'furo'
 # version of sphinx-rtd-theme (upgraded for Sphinx v8.x).  The removed line
 # is preserved by commenting it out in case it is ever needed again.
 html_theme_options = {
-    # "announcement": "<em>Important</em> announcement!",
     "sidebar_hide_name": True,      # True when the logo carries project name
     "top_of_page_buttons": ["view"],
     # The below 3 direct the "top_of_page_buttons" to github for view and edit buttons.
     "source_repository": "https://github.com/lvgl/lvgl/",
     "source_branch": "master",
     "source_directory": "docs/src/",
+    # "announcement": "<em>Semi-permanent announcement</em> from <code>conf.py</code>.",
 }
 
 # For site map generation

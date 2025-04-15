@@ -56,13 +56,14 @@
  # Called by 'DOMContentLoaded' event listener below; adds
  # documentation-version dropdown list just above search form in
  # upper part of left (nav) panel.
- #------------------------------------------------------------------------- #}
+ # ------------------------------------------------------------------------ #}
 function add_version_selector()
 {
     return fetch("https://raw.githubusercontent.com/lvgl/docs_compiled/gh-pages/versionlist.txt")
         .then(res => res.text())
         .then(text => {
             const version_list = text.split("\n").filter(version => version.trim().length > 0);
+            /* Note:  class "sidebar-search-container" is part of Furo theme. */
             let srch_form = document.getElementsByClassName("sidebar-search-container")[0];
             let parent_div = srch_form.parentElement;
 
