@@ -1,5 +1,5 @@
 /**
- * @file lv_group.h
+ * @file
  *
  */
 
