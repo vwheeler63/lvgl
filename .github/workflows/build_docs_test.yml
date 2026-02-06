@@ -10,7 +10,7 @@ on:
       - 'scripts/find_version.sh'
   push:
     branches:
-      - 'docs/*'
+      - 'docs/**'
       - master
       - 'release/*'
     paths:
