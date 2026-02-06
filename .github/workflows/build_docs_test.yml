@@ -3,7 +3,7 @@ on:
   pull_request:
     paths:
       - 'docs/**'
-      - '**/lv*.h'
+      - 'src/**/lv*.h'
       - 'examples/**'
       - 'demos/**'
       - 'scripts/build_html_examples.sh'
@@ -15,7 +15,7 @@ on:
       - 'docs/*'
     paths:
       - 'docs/**'
-      - '**/lv*.h'
+      - 'src/**/lv*.h'
       - 'examples/**'
       - 'demos/**'
       - 'scripts/build_html_examples.sh'
