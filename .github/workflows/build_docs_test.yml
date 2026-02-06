@@ -10,9 +10,9 @@ on:
       - 'scripts/find_version.sh'
   push:
     branches:
+      - 'docs/*'
       - master
       - 'release/*'
-      - 'docs/*'
     paths:
       - 'docs/**'
       - '**/lv*.h'
