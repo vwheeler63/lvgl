@@ -2,8 +2,8 @@ name: Build Docs Test
 on:
   pull_request:
     paths:
-      - 'src/**/lv*.h'
       - 'docs/**'
+      - '**/lv*.h'
       - 'examples/**'
       - 'demos/**'
       - 'scripts/build_html_examples.sh'
@@ -15,7 +15,7 @@ on:
       - 'docs/*'
     paths:
       - 'docs/**'
-      - 'src/**/lv*.h'
+      - '**/lv*.h'
       - 'examples/**'
       - 'demos/**'
       - 'scripts/build_html_examples.sh'
