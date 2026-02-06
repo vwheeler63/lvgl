@@ -17,7 +17,7 @@ on:
       - 'release/*'
     paths:
       - 'docs/**'
-      - './**/lv*.h'
+      - '**/lv*.h'
       - 'examples/**'
       - 'demos/**'
       - 'scripts/build_html_examples.sh'
