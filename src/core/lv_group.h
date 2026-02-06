@@ -1,7 +1,6 @@
 /**
  * @file lv_group.h
  *
- *
  */
 
 #ifndef LV_GROUP_H
