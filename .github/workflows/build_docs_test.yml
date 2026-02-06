@@ -6,6 +6,7 @@ on:
       # cannot break the doc build, and the purpose of having the docs build for
       # pull requests is to catch when something breaks the build.  No input files
       # in that path have the capacity to break the doc build.
+      - '**/lv*.h'
       - 'docs/**'
       - 'examples/**'
       - 'demos/**'
